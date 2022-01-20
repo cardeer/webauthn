@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -69,6 +70,7 @@ func ParseCredentialCreationResponseBody(body []byte) (*ParsedCredentialCreation
 	var ccr CredentialCreationResponse
 	err := json.Unmarshal(body, &ccr)
 	if err != nil {
+		fmt.Println(err.Error())
 		return nil, ErrBadRequest.WithDetails("Parse error for Registration").WithInfo(err.Error())
 	}
 
